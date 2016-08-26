@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Dep time:</strong>
+  <%= @road.dep_time %>
+</p>
+
+<p>
+  <strong>Path:</strong>
+  <%= @road.path %>
+</p>
+
+<p>
+  <strong>Capacity:</strong>
+  <%= @road.capacity %>
+</p>
+
+<p>
+  <strong>Allow delta dist:</strong>
+  <%= @road.allow_delta_dist %>
+</p>
+
+<p>
+  <strong>Allow delta time:</strong>
+  <%= @road.allow_delta_time %>
+</p>
+
+<%= link_to 'Edit', edit_road_path(@road) %> |
+<%= link_to 'Back', roads_path %>

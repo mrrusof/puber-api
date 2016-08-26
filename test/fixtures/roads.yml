@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dep_time: 2016-08-26 15:58:32
+  path: MyText
+  capacity: 1
+  allow_delta_dist: 
+  allow_delta_time: 
+
+two:
+  dep_time: 2016-08-26 15:58:32
+  path: MyText
+  capacity: 1
+  allow_delta_dist: 
+  allow_delta_time: 
