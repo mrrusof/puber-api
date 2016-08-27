@@ -1,6 +1,9 @@
 var mapOptions;
 var theMap;
 var infoWindow;
+var markers = [];
+var directionsDisplay;
+var directionsService;
 
 function initMap() {
     mapOptions = {
@@ -9,6 +12,9 @@ function initMap() {
     };
     theMap = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
     infoWindow = new google.maps.InfoWindow({map: theMap});
+    directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsDisplay.setMap(theMap);
+    directionsService = new google.maps.DirectionsService();
 
     // Try HTML5 geolocation
     if(navigator.geolocation) {
@@ -28,6 +34,17 @@ function initMap() {
         // Browser does not support geolocation
         handleLocationError(false, infoWindow, theMap.getCenter());
     }
+
+    // Set markers when user clicks.
+    google.maps.event.addListener(theMap, 'click', function(e) {
+        var l = markers.length;
+        if(l == 0) {
+            addMarker(e.latLng, theMap, 'Origen');
+        } else if(l == 1) {
+            addMarker(e.latLng, theMap, 'Destino');
+            route(markers[0], markers[1]);
+        }
+    });
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -35,4 +52,37 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setContent(browserHasGeolocation ?
                           'Error: The Geolocatio service failed.' :
                           'Error: Your browser does not support geolocation.');
+}
+
+function addMarker(location, map, title) {
+    var marker = new google.maps.Marker({ position: location,
+                                          title: title,
+                                          map: map });
+    markers.push(marker)
+}
+
+function removeMarkers(){
+  for(var i=0; i < markers.length; i++ ){
+    markers[i].setMap(null);
+  }
+}
+
+function route(start, end) {
+  var startLat  = start.position.lat()
+  var startLng  = start.position.lng()
+  var endLat  = end.position.lat()
+  var endLng  = end.position.lng()
+  var request = {
+    origin: new google.maps.LatLng(startLat, startLng),
+    destination: new google.maps.LatLng(endLat, endLng),
+    travelMode: google.maps.TravelMode.DRIVING
+  };
+  directionsService.route(request, function(result, status) {
+    if(status == "OK") {
+      directionsDisplay.setDirections(result);
+      removeMarkers();
+    } else {
+      alert("Could not get directions: " + status);
+    }
+  });
 }
