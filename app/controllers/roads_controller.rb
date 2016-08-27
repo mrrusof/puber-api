@@ -28,7 +28,8 @@ class RoadsController < ApplicationController
 
     respond_to do |format|
       if @road.save
-        format.html { redirect_to @road, notice: 'Road was successfully created.' }
+#        format.html { redirect_to @road, notice: 'Road was successfully created.' }
+        format.html { redirect_to "http://puber.xyz/dashboard.html" }
         format.json { render :show, status: :created, location: @road }
       else
         format.html { render :new }
