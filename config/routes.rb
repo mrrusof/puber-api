@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/driver', to: 'app#driver'
   get '/passenger', to: 'app#passenger'
 
+  post '/candidate_passenger_email', to: 'app#candidate_passenger_email'
+
   resources :roads
   resources :users
   match "*path", to: 'application#options', via: [:options]
