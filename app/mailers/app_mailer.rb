@@ -5,6 +5,8 @@ class AppMailer < ApplicationMailer
     @driver = driver
     @passenger = passenger
     @message = message
+    puts "username = #{ENV['smtp_username']}"
+    puts "password = #{ENV['smtp_password']}"
     mail to: @driver.email, subject: "#{@driver.name}, a passenger wants to ride with you."
   end
 
