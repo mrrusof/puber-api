@@ -1,4 +1,3 @@
-var directionsDisplays = [];
 var colors = ["#638EF2", "#BC91EA", "#D3E28E", "#9CC0E5", "#E8A4CA"];
 var currentColor = 0;
 
@@ -26,9 +25,23 @@ function drawRoad(roads) {
             if(status == "OK") {
                 currentColor = (currentColor + 1) % colors.length;
                 var dD = new google.maps.DirectionsRenderer({
-                    polylineOptions: { strokeColor: colors[currentColor] }
+                  polylineOptions: { strokeColor: colors[currentColor] }
                 });
-                directionsDisplays.push(dD);
+                google.maps.event.addListener(dD, 'directions_changed', function(event) {
+                  var path = dD.getDirections().routes[0].overview_path;
+                  var eventLine = new google.maps.Polyline({
+                    path: path,
+                    visible: true,
+                    strokeOpacity: 0,
+                    strokeColor: currentColor,
+                    strokeWeight: 20,
+                    zIndex: 1000
+                  });
+                  eventLine.setMap(theMap);
+                  google.maps.event.addListener(eventLine, 'click', function(event) {
+                    alert("asdfasdf");
+                  });
+                });
                 dD.setMap(theMap);
                 dD.setDirections(result);
             } else {
