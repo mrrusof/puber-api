@@ -1,8 +1,6 @@
 var mapOptions;
 var theMap;
-var infoWindow;
 var markers = [];
-var directionsDisplay;
 var directionsService;
 
 function initMap() {
@@ -11,9 +9,6 @@ function initMap() {
         center: { lat: 23.6266557, lng: -102.5375005 },
     };
     theMap = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-    infoWindow = new google.maps.InfoWindow({map: theMap});
-    directionsDisplay = new google.maps.DirectionsRenderer();
-    directionsDisplay.setMap(theMap);
     directionsService = new google.maps.DirectionsService();
 
     // Try HTML5 geolocation
@@ -25,11 +20,10 @@ function initMap() {
             };
             theMap.setCenter(pos);
         }, function() {
-            handleLocationError(true, infoWindow, theMap.getCenter());
+            alert('Error: The geolocation service failed.');
         });
     } else {
-        infoWindow.setPosition(theMap.getCenter());
-        infoWindow.setContent('Error: The geolocation service failed.');
+        alert('Error: Your browser does not support geolocation.');
     }
 };
 

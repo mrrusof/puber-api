@@ -1,5 +1,10 @@
+var directionsDisplay;
+
 function initDriver() {
     initMap();
+
+    directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsDisplay.setMap(theMap);
 
     // Set markers when user clicks.
     google.maps.event.addListener(theMap, 'click', function(e) {
