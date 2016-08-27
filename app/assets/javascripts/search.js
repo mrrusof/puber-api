@@ -23,9 +23,6 @@ function initMap() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('This is your location');
             theMap.setCenter(pos);
         }, function() {
             handleLocationError(true, infoWindow, theMap.getCenter());
@@ -67,22 +64,40 @@ function removeMarkers(){
   }
 }
 
-function route(start, end) {
-  var startLat  = start.position.lat()
-  var startLng  = start.position.lng()
-  var endLat  = end.position.lat()
-  var endLng  = end.position.lng()
+function route(start, end, waypoints=[]) {
+  var waypoint = {
+    location: new google.maps.LatLng(25.669883, -100.380232),
+    stopover: true
+  }
+  var waypoint1 = {
+    location: new google.maps.LatLng(25.969883, -100.480232),
+    stopover: true
+  }
+  var waypoints = [waypoint, waypoint1];
   var request = {
-    origin: new google.maps.LatLng(startLat, startLng),
-    destination: new google.maps.LatLng(endLat, endLng),
+    origin: start.getPosition(),
+    destination: end.getPosition(),
+    waypoints: waypoints,
     travelMode: google.maps.TravelMode.DRIVING
   };
   directionsService.route(request, function(result, status) {
     if(status == "OK") {
       directionsDisplay.setDirections(result);
       removeMarkers();
+      populateRoadInput(start, end, waypoints);
     } else {
       alert("Could not get directions: " + status);
     }
   });
+}
+
+function populateRoadInput(start, end, waypoints){
+  var waypointsJSON = [];
+  for(var i=0; i < waypoints.length; i++){
+    waypointsJSON.push(waypoints[i].location.toJSON());
+  }
+  var routeJSON = { start: start.getPosition().toJSON(),
+    end: end.getPosition().toJSON(),
+    waypoints: waypointsJSON }
+  $("#road_path").val(JSON.stringify(routeJSON));
 }

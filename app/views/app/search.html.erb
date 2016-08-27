@@ -1,7 +1,10 @@
 <h1>Search</h1>
 
 <div id="map-canvas" style="height: 400px; width: 90%; border: solid 1px;"></div>
-
+<form class="new_road" id="new_road" action="/roads" accept-charset="UTF-8" method="post">
+  <button type="submit">Guardar Ruta</button>
+  <textarea name="road[path]" id="road_path" style="display:none;"></textarea>
+</form>
 
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoaZLtlE_uGVWDt9lMQ5dT2lN3cRp1V7s&callback=initMap">
