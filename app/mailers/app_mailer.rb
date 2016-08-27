@@ -7,10 +7,7 @@ class AppMailer < ApplicationMailer
     @message = message
     puts "username = #{ENV['smtp_username']}"
     puts "password = #{ENV['smtp_password']}"
-    begin
-      mail to: @driver.email, from: @passenger.email, subject: "#{@driver.name}, a passenger wants to ride with you."
-    rescue
-    end
+    mail to: @driver.email, from: @passenger.email, subject: "#{@driver.name}, a passenger wants to ride with you."
   end
 
   def accepted_passenger_email(driver, passenger)
