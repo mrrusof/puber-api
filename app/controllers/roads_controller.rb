@@ -69,6 +69,6 @@ class RoadsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def road_params
-      params.require(:road).permit(:dep_time, :path, :capacity, :allow_delta_dist, :allow_delta_time)
+      params.require(:road).permit(:user_id, :dep_time, :path, :capacity, :allow_delta_dist, :allow_delta_time)
     end
 end

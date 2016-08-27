@@ -3,6 +3,7 @@
 <div id="map-canvas" style="height: 400px; width: 90%; border: solid 1px;"></div>
 <form class="new_road" id="new_road" action="/roads" accept-charset="UTF-8" method="post">
   <button type="submit">Guardar Ruta</button>
+  <input type="hidden" name="road[user_id]" id="road_user_id" value="1"></input>
   <textarea name="road[path]" id="road_path" style="display:none;"></textarea>
 </form>
 

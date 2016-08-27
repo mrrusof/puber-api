@@ -51,6 +51,6 @@ function drawRoad(roads) {
 
 function pickRoad(road) {
     return function(event) {
-        window.location.href = "roads/" + road.id;
+        window.location.href = "users/" + road.user.id;
     };
 }

@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>User</th>
       <th>Dep time</th>
       <th>Path</th>
       <th>Capacity</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @roads.each do |road| %>
       <tr>
+        <td><%= road.user_id %></td>
         <td><%= road.dep_time %></td>
         <td><%= road.path %></td>
         <td><%= road.capacity %></td>
