@@ -64,20 +64,21 @@ function removeMarkers(){
   }
 }
 
-function route(start, end, waypoints=[]) {
-  var waypoint = {
-    location: new google.maps.LatLng(25.669883, -100.380232),
-    stopover: true
-  }
-  var waypoint1 = {
-    location: new google.maps.LatLng(25.969883, -100.480232),
-    stopover: true
-  }
-  var waypoints = [waypoint, waypoint1];
+function route(start, end) {
+  // var waypoint1 = { // TODO use when we allow waypoints for driver
+  //   location: new google.maps.LatLng(25.669883, -100.380232),
+  //   stopover: true
+  // }
+  // var waypoint2 = { // TODO use when we allow waypoints for driver
+  //   location: new google.maps.LatLng(25.969883, -100.480232),
+  //   stopover: true
+  // }
+  // var waypoints = [waypoint1, waypoint2]; // TODO use when we allow waypoints for driver
+  var waypoints = [];
   var request = {
     origin: start.getPosition(),
     destination: end.getPosition(),
-    waypoints: waypoints,
+    waypoints: waypoints, // TODO use when we allow waypoints for driver
     travelMode: google.maps.TravelMode.DRIVING
   };
   directionsService.route(request, function(result, status) {
