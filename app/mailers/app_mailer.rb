@@ -13,12 +13,12 @@ class AppMailer < ApplicationMailer
   def accepted_passenger_email(driver, passenger)
     @driver = driver
     @passenger = passenger
-    mail to: @passenger.email, @driver.email, subject: "#{@driver.name} accepted you in the carpool!"
+    mail to: @passenger.email, from: @driver.email, subject: "#{@driver.name} accepted you in the carpool!"
   end
 
   def rejected_passenger_email(driver, passenger)
     @driver = driver
     @passenger = passenger
-    mail to: @passenger.email, @driver.email, subject: "#It is ok {@passenger.name}, there are other rides you can try."
+    mail to: @passenger.email, from: @driver.email, subject: "#It is ok {@passenger.name}, there are other rides you can try."
   end
 end
