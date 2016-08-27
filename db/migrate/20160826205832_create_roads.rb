@@ -6,6 +6,7 @@ class CreateRoads < ActiveRecord::Migration[5.0]
       t.integer :capacity
       t.integer :allow_delta_dist
       t.integer :allow_delta_time
+      t.integer :user_id
 
       t.timestamps
     end

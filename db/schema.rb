@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160827100434) do
+ActiveRecord::Schema.define(version: 20160827032411) do
 
   create_table "roads", force: :cascade do |t|
     t.datetime "dep_time"
@@ -18,10 +18,9 @@ ActiveRecord::Schema.define(version: 20160827100434) do
     t.integer  "capacity"
     t.integer  "allow_delta_dist"
     t.integer  "allow_delta_time"
+    t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.integer  "user_id"
-    t.index ["user_id"], name: "index_roads_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
