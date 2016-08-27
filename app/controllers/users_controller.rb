@@ -1,9 +1,4 @@
 class UsersController < ApplicationController
-
-  ALLOWED_METHODS = 'GET, HEAD, PUT, PATCH, DELETE, OPTIONS'
-  ALLOWED_ORIGIN = '*'
-
-  after_filter :set_cors_headers
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def options
@@ -84,10 +79,5 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :phone, :email, :group)
-    end
-
-    def set_cors_headers
-      response.headers['Access-Control-Allow-Methods'] = ALLOWED_METHODS
-      response.headers['Access-Control-Allow-Origin'] = ALLOWED_ORIGIN
     end
 end
