@@ -38,9 +38,7 @@ function drawRoad(roads) {
                     zIndex: 1000
                   });
                   eventLine.setMap(theMap);
-                  google.maps.event.addListener(eventLine, 'click', function(event) {
-                    alert("asdfasdf");
-                  });
+                  google.maps.event.addListener(eventLine, 'click', pickRoad(road));
                 });
                 dD.setMap(theMap);
                 dD.setDirections(result);
@@ -51,8 +49,8 @@ function drawRoad(roads) {
     });
 }
 
-function pickRoad(directionsDisplay, road) {
-    return function() {
-        alert("You selected: " + road.id);
+function pickRoad(road) {
+    return function(event) {
+        window.location.href = "roads/" + road.id;
     };
 }
