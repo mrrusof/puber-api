@@ -1,6 +1,9 @@
 class AppController < ApplicationController
 
-  def search
+  def driver
+  end
+
+  def passenger
   end
 
 end

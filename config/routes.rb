@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  root 'app#search'
+  root 'app#driver'
+  get '/driver', to: 'app#driver'
+  get '/passenger', to: 'app#passenger'
 
   resources :roads
   resources :users
