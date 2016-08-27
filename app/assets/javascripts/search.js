@@ -4,7 +4,7 @@ var infoWindow;
 
 function initMap() {
     mapOptions = {
-        zoom: 5,
+        zoom: 15,
         center: { lat: 23.6266557, lng: -102.5375005 },
     };
     theMap = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
