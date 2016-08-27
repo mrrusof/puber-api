@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   ALLOWED_METHODS = 'GET, HEAD, PUT, PATCH, DELETE, OPTIONS'
   ALLOWED_ORIGIN = '*'
 
-  after_filter :set_cors_headers
+  after_action :set_cors_headers
 
   def options
   end
