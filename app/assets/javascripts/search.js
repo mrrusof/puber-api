@@ -61,17 +61,28 @@ function addMarker(location, map, title) {
     markers.push(marker)
 }
 
+function removeMarkers(){
+  for(var i=0; i < markers.length; i++ ){
+    markers[i].setMap(null);
+  }
+}
+
 function route(start, end) {
-    var request = {
-        origin: start.LatLng,
-        destination: end.LatLng,
-        travelMode: google.maps.TravelMode.CAR
-    };
-    directionsService.route(request, function(result, status) {
-        if(status == google.maps.Directionstatus.OK) {
-            directionsDisplay.setDirections(result);
-        } else {
-            alert("Could not get directions: " + status);
-        }
-    });
+  var startLat  = start.position.lat()
+  var startLng  = start.position.lng()
+  var endLat  = end.position.lat()
+  var endLng  = end.position.lng()
+  var request = {
+    origin: new google.maps.LatLng(startLat, startLng),
+    destination: new google.maps.LatLng(endLat, endLng),
+    travelMode: google.maps.TravelMode.DRIVING
+  };
+  directionsService.route(request, function(result, status) {
+    if(status == "OK") {
+      directionsDisplay.setDirections(result);
+      removeMarkers();
+    } else {
+      alert("Could not get directions: " + status);
+    }
+  });
 }
