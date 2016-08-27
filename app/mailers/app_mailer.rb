@@ -9,7 +9,7 @@ class AppMailer < ApplicationMailer
     puts "password = #{ENV['smtp_password']}"
     begin
       mail to: @driver.email, from: @passenger.email, subject: "#{@driver.name}, a passenger wants to ride with you."
-    rescue => exc
+    rescue RuntimeException => exc
       puts "exc = #{exc}"
       puts "exc.message = #{exc.message}"
     end
