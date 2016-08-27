@@ -1,10 +1,14 @@
+var mapOptions;
+var theMap;
+var infoWindow;
+
 function initMap() {
-    var mapOptions = {
+    mapOptions = {
         zoom: 5,
         center: { lat: 23.6266557, lng: -102.5375005 },
     };
-    var theMap = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-    var infoWindow = new google.maps.InfoWindow({map: theMap});
+    theMap = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    infoWindow = new google.maps.InfoWindow({map: theMap});
 
     // Try HTML5 geolocation
     if(navigator.geolocation) {
