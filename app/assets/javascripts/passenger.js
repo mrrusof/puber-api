@@ -7,7 +7,7 @@ function initPassenger() {
 }
 
 function getRoads() {
-    $.get( "/roads.json", function( roads ) {
+    $.get( "http://puber-api.herokuapp.com/roads.json", function( roads ) {
         drawRoad(roads);
     });
 }
